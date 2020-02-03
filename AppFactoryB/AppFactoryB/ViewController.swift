@@ -16,67 +16,113 @@ class ViewController: UIViewController {
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var pauseButton: UIButton!
     @IBOutlet weak var finishButton: UIButton!
+
+    var timer : Timer?
     
-    var timer: Timer?
-    var time: Double = 0
+    var sec :Int = 0
+    var min :Int = 0
+    var hor :Int = 0
     
-    var seconds :Int = 0
-    var miliSeconds :Int = 0
-    
-    var startTime: Double = 0
-    
-    var ms: Int = 0
+    var pause :Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        pauseButton.isEnabled = false
+        finishButton.isEnabled = false
 
+    }
+    
+    func cronometro(){
+        
+        timer = Timer.scheduledTimer(timeInterval: 1,
+        target: self,
+        selector: #selector(fireTimer),
+        userInfo: nil,
+        repeats: true)
     }
 
     @IBAction func start(_ sender: Any) {
+
+        cronometro()
         
-        /*let interval :Double = 0.02
-        
-        timer = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)*/
-        
-        startTime = Date().timeIntervalSinceReferenceDate
-        timer = Timer.scheduledTimer(timeInterval: 0.01,
-                                     target: self,
-                                     selector: #selector(fireTimer),
-                                     userInfo: nil,
-                                     repeats: true)
+        startButton.isEnabled = false
+        pauseButton.isEnabled = true
+        finishButton.isEnabled = true
     }
     
     @objc func fireTimer() {
-
-        /*ms += Int(timer!.timeInterval * 10)
         
-        miliSeconds += Int(timer!.timeInterval * 10)
-        
-        /*if(ms >= 10) {
+        if (min >= 59){
             
-            seconds += 1
-        }*/
-        
-        timeLabel.text = "\(miliSeconds)"*/
-        
-        //Total time since timer started, in seconds
-        time = Date().timeIntervalSinceReferenceDate - startTime
-
-        //Convert the time to a string with 2 decimal places
-        
-        //miliSeconds = String(format: "%.2f", time)
-        
-        miliSeconds += Int(time * 100)
-        
-        if (miliSeconds >= 100) {
+            min = 0
+            hor += 1
             
-            miliSeconds = 0
-            seconds += 1
         }
         
-        timeLabel.text = "\(seconds):\(miliSeconds)"
+        if (sec >= 59){
+            
+            sec = 0
+            min += 1
+        }
+        else {
+            
+            sec += 1
+        }
+        
+        if (sec <= 9) {
+            
+            timeLabel.text = "0\(hor):0\(min):0\(sec)"
+            
+            if (min <= 9) {
+                
+                timeLabel.text = "0\(hor):0\(min):0\(sec)"
+            }
+            else{
+                
+                timeLabel.text = "0\(hor):\(min):0\(sec)"
+            }
+        }
+        else {
+            
+            timeLabel.text = "0\(hor):0\(min):\(sec)"
+            
+            if (min <= 9) {
+                
+                timeLabel.text = "0\(hor):0\(min):\(sec)"
+            }
+            else{
+                
+                timeLabel.text = "0\(hor):\(min):\(sec)"
+            }
+        }
         
     }
     
+    @IBAction func pause(_ sender: Any) {
+        
+        if (pause == 0) {
+            
+            pauseButton.setImage(UIImage(named: "pause.circle"), for: UIControl.State.normal)
+            timer?.invalidate()
+            pause = 1
+        }
+        else {
+            
+            cronometro()
+            pause = 0
+        }
+    }
+    
+    @IBAction func finish(_ sender: Any) {
+        
+        sec = 0
+        min = 0
+        hor = 0
+        timer?.invalidate()
+        finishButton.isEnabled = false
+        startButton.isEnabled = true
+        pauseButton.isEnabled = false
+    }
 }
 
