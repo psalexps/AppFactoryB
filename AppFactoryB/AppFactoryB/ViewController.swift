@@ -10,13 +10,15 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var inicio: UIBarButtonItem!
-    
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var pauseButton: UIButton!
     @IBOutlet weak var finishButton: UIButton!
-
+    
+    @IBOutlet weak var andarButton: UIButton!
+    @IBOutlet weak var correrButton: UIButton!
+    @IBOutlet weak var bicicletaButton: UIButton!
+    
     var timer : Timer?
     
     var sec :Int = 0
@@ -28,8 +30,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        andarButton.isSelected = true
+        
         pauseButton.isEnabled = false
         finishButton.isEnabled = false
+        
+        pauseButton.setImage(UIImage(systemName: "pause.circle"), for: UIControl.State.normal)
 
     }
     
@@ -102,13 +108,14 @@ class ViewController: UIViewController {
     @IBAction func pause(_ sender: Any) {
         
         if (pause == 0) {
-            
-            pauseButton.setImage(UIImage(named: "pause.circle"), for: UIControl.State.normal)
+
+            pauseButton.setImage(UIImage(systemName: "play.circle"), for: UIControl.State.normal)
             timer?.invalidate()
             pause = 1
         }
         else {
             
+            pauseButton.setImage(UIImage(systemName: "pause.circle"), for: UIControl.State.normal)
             cronometro()
             pause = 0
         }
@@ -119,6 +126,7 @@ class ViewController: UIViewController {
         sec = 0
         min = 0
         hor = 0
+        timeLabel.text = "00:00:00"
         timer?.invalidate()
         finishButton.isEnabled = false
         startButton.isEnabled = true

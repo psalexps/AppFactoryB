@@ -41,8 +41,6 @@
                                 <rect key="frame" x="0.0" y="813" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="RjS-nh-rpr"/>
-                                    <barButtonItem title="Inicio" id="Ips-mn-bwl"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="X7A-GE-TLa"/>
                                     <barButtonItem title="Historial" id="a2j-Wu-CaR">
                                         <connections>
@@ -92,13 +90,12 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZFD-6p-CuE">
-                                        <rect key="frame" x="108" y="0.5" width="40" height="39"/>
+                                        <rect key="frame" x="108" y="0.0" width="40" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="Ck6-mK-XUg"/>
                                             <constraint firstAttribute="height" constant="40" id="TYr-Bl-lFM"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <state key="normal" backgroundImage="play.circle" catalog="system"/>
                                         <connections>
                                             <action selector="pause:" destination="h7j-5W-Uix" eventType="touchUpInside" id="bX7-Th-2Vf"/>
                                         </connections>
@@ -154,8 +151,10 @@
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="andarButton" destination="NLW-9Y-BM3" id="8m5-oY-dVp"/>
+                        <outlet property="bicicletaButton" destination="OQs-UV-IHB" id="1Jd-dp-GS3"/>
+                        <outlet property="correrButton" destination="avm-Qm-7TL" id="rAj-Fs-JZR"/>
                         <outlet property="finishButton" destination="Odj-0w-mHm" id="ElZ-4S-Czl"/>
-                        <outlet property="inicio" destination="Ips-mn-bwl" id="zxN-tQ-j2E"/>
                         <outlet property="pauseButton" destination="ZFD-6p-CuE" id="7Zo-Kq-bjb"/>
                         <outlet property="startButton" destination="Mvd-DH-Rmv" id="ioX-L0-aUz"/>
                         <outlet property="timeLabel" destination="oVO-X6-zDB" id="sUu-rc-GgF"/>
@@ -198,7 +197,4 @@
             <point key="canvasLocation" x="687" y="74"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="play.circle" catalog="system" width="64" height="60"/>
-    </resources>
 </document>
