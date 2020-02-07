@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import MapKit
+import CoreLocation
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var startButton: UIButton!
@@ -19,6 +21,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var correrButton: UIButton!
     @IBOutlet weak var bicicletaButton: UIButton!
     
+    @IBOutlet weak var mapView: MKMapView!
+    
     var timer : Timer?
     
     var sec :Int = 0
@@ -26,6 +30,9 @@ class ViewController: UIViewController {
     var hor :Int = 0
     
     var pause :Int = 0
+    
+    var locationManager: CLLocationManager!
+    var previousLocation : CLLocation!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +44,23 @@ class ViewController: UIViewController {
         
         pauseButton.setImage(UIImage(systemName: "pause.circle"), for: UIControl.State.normal)
 
+        locationManager = CLLocationManager()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        locationManager.delegate = self;
+
+        let status = CLLocationManager.authorizationStatus()
+        if status == .notDetermined || status == .denied || status == .authorizedWhenInUse {
+            
+               locationManager.requestAlwaysAuthorization()
+               locationManager.requestWhenInUseAuthorization()
+           }
+        locationManager.startUpdatingLocation()
+        locationManager.startUpdatingHeading()
+        
+        mapView.delegate = self;
+        mapView.showsUserLocation = true
+        mapView.mapType = MKMapType(rawValue: 0)!
+        mapView.userTrackingMode = MKUserTrackingMode(rawValue: 2)!
     }
     
     func cronometro(){
@@ -132,5 +156,41 @@ class ViewController: UIViewController {
         startButton.isEnabled = true
         pauseButton.isEnabled = false
     }
+    
+
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+    }
+    
+    //https://medium.com/@gayatri.hedau/mkmapview-with-mkpolyline-in-swift-8b2779d29225
+    
+    func locationManager(_: CLLocationManager, didUpdateTo: CLLocation, from: CLLocation){}
+    
+    func locationManager(manager: CLLocationManager!, didUpdateToLocation newLocation: CLLocation!, fromLocation oldLocation: CLLocation!){
+        
+        print((newLocation.coordinate.latitude), (newLocation.coordinate.longitude))
+        
+        if let oldLocationNew = oldLocation as CLLocation?{
+             let oldCoordinates = oldLocationNew.coordinate
+             let newCoordinates = newLocation.coordinate
+             var area = [oldCoordinates, newCoordinates]
+                let polyline = MKPolyline(coordinates: &area, count: area.count)
+             mapView.addOverlay(polyline)
+         }
+        
+    }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer{
+        
+       
+            let pr = MKPolylineRenderer(overlay: overlay)
+            pr.strokeColor = UIColor.red
+            pr.lineWidth = 5
+            return pr
+   
+        
+    }
+    
 }
+
 

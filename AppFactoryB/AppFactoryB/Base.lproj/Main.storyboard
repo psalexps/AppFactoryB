@@ -115,6 +115,10 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="9gr-Eg-pKn">
+                                <rect key="frame" x="20" y="232" width="374" height="514"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -155,6 +159,7 @@
                         <outlet property="bicicletaButton" destination="OQs-UV-IHB" id="1Jd-dp-GS3"/>
                         <outlet property="correrButton" destination="avm-Qm-7TL" id="rAj-Fs-JZR"/>
                         <outlet property="finishButton" destination="Odj-0w-mHm" id="ElZ-4S-Czl"/>
+                        <outlet property="mapView" destination="9gr-Eg-pKn" id="Qe7-k6-vRN"/>
                         <outlet property="pauseButton" destination="ZFD-6p-CuE" id="7Zo-Kq-bjb"/>
                         <outlet property="startButton" destination="Mvd-DH-Rmv" id="ioX-L0-aUz"/>
                         <outlet property="timeLabel" destination="oVO-X6-zDB" id="sUu-rc-GgF"/>
