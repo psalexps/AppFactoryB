@@ -160,34 +160,29 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-    }
-    
-    //https://medium.com/@gayatri.hedau/mkmapview-with-mkpolyline-in-swift-8b2779d29225
-    
-    func locationManager(_: CLLocationManager, didUpdateTo: CLLocation, from: CLLocation){}
-    
-    func locationManager(manager: CLLocationManager!, didUpdateToLocation newLocation: CLLocation!, fromLocation oldLocation: CLLocation!){
+        print(locations[0].coordinate)
         
-        print((newLocation.coordinate.latitude), (newLocation.coordinate.longitude))
+        let loca = CLLocationCoordinate2D(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude)
         
-        if let oldLocationNew = oldLocation as CLLocation?{
-             let oldCoordinates = oldLocationNew.coordinate
-             let newCoordinates = newLocation.coordinate
-             var area = [oldCoordinates, newCoordinates]
-                let polyline = MKPolyline(coordinates: &area, count: area.count)
-             mapView.addOverlay(polyline)
-         }
+        var loc = [CLLocationCoordinate2D]()
+        
+        loc.append(loca)
+        
+        let polyline = MKPolyline(coordinates: loc, count: loc.count)
+        
+        let region = MKCoordinateRegion(center: loca, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        self.mapView.setRegion(region, animated: true)
+        
+        mapView.addOverlay(polyline)
         
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer{
         
-       
-            let pr = MKPolylineRenderer(overlay: overlay)
-            pr.strokeColor = UIColor.red
-            pr.lineWidth = 5
-            return pr
-   
+        let pr = MKPolylineRenderer(overlay: overlay)
+        pr.strokeColor = UIColor.red
+        pr.lineWidth = 5
+        return pr
         
     }
     
