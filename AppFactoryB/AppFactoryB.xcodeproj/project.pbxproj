@@ -13,6 +13,7 @@
 		0223C3BE23D2393200DB4B18 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0223C3BC23D2393200DB4B18 /* Main.storyboard */; };
 		0223C3C023D2393900DB4B18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0223C3BF23D2393900DB4B18 /* Assets.xcassets */; };
 		0223C3C323D2393900DB4B18 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0223C3C123D2393900DB4B18 /* LaunchScreen.storyboard */; };
+		02745B3D240855F700132ADA /* DatosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02745B3C240855F700132ADA /* DatosViewController.swift */; };
 		02970D3A23E4A7E900501710 /* HistorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02970D3923E4A7E900501710 /* HistorialViewController.swift */; };
 		21FC3ABA411AC76C4DDFB5DA /* Pods_AppFactoryB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B40FC7041A08D4A0AFBF5E8 /* Pods_AppFactoryB.framework */; };
 /* End PBXBuildFile section */
@@ -26,6 +27,7 @@
 		0223C3BF23D2393900DB4B18 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0223C3C223D2393900DB4B18 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0223C3C423D2393900DB4B18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		02745B3C240855F700132ADA /* DatosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatosViewController.swift; sourceTree = "<group>"; };
 		02970D3923E4A7E900501710 /* HistorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistorialViewController.swift; sourceTree = "<group>"; };
 		3240EFBD5F36A0CDC459CA7D /* Pods-AppFactoryB.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppFactoryB.release.xcconfig"; path = "Target Support Files/Pods-AppFactoryB/Pods-AppFactoryB.release.xcconfig"; sourceTree = "<group>"; };
 		52FC970001314900F9053195 /* Pods-AppFactoryB.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppFactoryB.debug.xcconfig"; path = "Target Support Files/Pods-AppFactoryB/Pods-AppFactoryB.debug.xcconfig"; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 		0223C3B523D2393200DB4B18 /* AppFactoryB */ = {
 			isa = PBXGroup;
 			children = (
+				02745B3C240855F700132ADA /* DatosViewController.swift */,
 				0223C3B623D2393200DB4B18 /* AppDelegate.swift */,
 				0223C3B823D2393200DB4B18 /* SceneDelegate.swift */,
 				0223C3BA23D2393200DB4B18 /* ViewController.swift */,
@@ -194,6 +197,7 @@
 				0223C3BB23D2393200DB4B18 /* ViewController.swift in Sources */,
 				0223C3B723D2393200DB4B18 /* AppDelegate.swift in Sources */,
 				02970D3A23E4A7E900501710 /* HistorialViewController.swift in Sources */,
+				02745B3D240855F700132ADA /* DatosViewController.swift in Sources */,
 				0223C3B923D2393200DB4B18 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

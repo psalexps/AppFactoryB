@@ -21,6 +21,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     @IBOutlet weak var correrButton: UIButton!
     @IBOutlet weak var bicicletaButton: UIButton!
     
+    @IBOutlet weak var kmRecorrido: UILabel!
     @IBOutlet weak var mapView: MKMapView!
     
     var timer : Timer?
@@ -32,7 +33,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     var pause :Int = 0
     
     var locationManager: CLLocationManager!
-    var previousLocation : CLLocation!
+    //var previousLocation : CLLocation!
+    var distanceTraveled: Double = 0
+    let metersToMiles: Double = 0.001
+    var startLocation: CLLocation!
+    var lastLocation: CLLocation!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -157,7 +162,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         pauseButton.isEnabled = false
     }
     
-
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         print(locations[0].coordinate)
@@ -170,10 +174,35 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         
         let polyline = MKPolyline(coordinates: loc, count: loc.count)
         
+        mapView.addOverlay(polyline)
+        
+        /*
         let region = MKCoordinateRegion(center: loca, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         self.mapView.setRegion(region, animated: true)
+         */
         
-        mapView.addOverlay(polyline)
+        if (startButton.isEnabled == false) {
+        
+            if startLocation == nil {
+                print("startLocation is null")
+                startLocation = locations.first
+            }
+            else {
+                let lastLocation = locations.last
+                let distance = startLocation.distance(from: lastLocation!)
+                startLocation = lastLocation
+                distanceTraveled += distance
+            }
+        
+            let distanceTraveledString = (String(format:"%.1f", distanceTraveled * metersToMiles)) + " Km"
+            kmRecorrido.text = distanceTraveledString
+            
+        }
+        else {
+            
+            kmRecorrido.text = "0.0 Km"
+            
+        }
         
     }
     
