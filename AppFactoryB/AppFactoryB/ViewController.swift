@@ -33,7 +33,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     var pause :Int = 0
     
     var locationManager: CLLocationManager!
-    //var previousLocation : CLLocation!
+
     var distanceTraveled: Double = 0
     let metersToMiles: Double = 0.001
     var startLocation: CLLocation!
@@ -66,6 +66,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         mapView.showsUserLocation = true
         mapView.mapType = MKMapType(rawValue: 0)!
         mapView.userTrackingMode = MKUserTrackingMode(rawValue: 2)!
+        
     }
     
     func cronometro(){
@@ -75,6 +76,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         selector: #selector(fireTimer),
         userInfo: nil,
         repeats: true)
+        
     }
 
     @IBAction func start(_ sender: Any) {
@@ -84,6 +86,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         startButton.isEnabled = false
         pauseButton.isEnabled = true
         finishButton.isEnabled = true
+        
     }
     
     @objc func fireTimer() {
@@ -160,28 +163,29 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         finishButton.isEnabled = false
         startButton.isEnabled = true
         pauseButton.isEnabled = false
+        
     }
     
+    var loc = [CLLocationCoordinate2D]()
+
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         print(locations[0].coordinate)
-        
-        let loca = CLLocationCoordinate2D(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude)
-        
-        var loc = [CLLocationCoordinate2D]()
-        
-        loc.append(loca)
-        
-        let polyline = MKPolyline(coordinates: loc, count: loc.count)
-        
-        mapView.addOverlay(polyline)
         
         /*
         let region = MKCoordinateRegion(center: loca, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         self.mapView.setRegion(region, animated: true)
          */
         
-        if (startButton.isEnabled == false) {
+        if (startButton.isEnabled == false && pause == 0) {
+            
+            let loca = CLLocationCoordinate2D(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude)
+            
+            loc.append(loca)
+            
+            let polyline = MKPolyline(coordinates: loc, count: loc.count)
+            
+            mapView.addOverlay(polyline)
         
             if startLocation == nil {
                 print("startLocation is null")
@@ -200,15 +204,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         }
         else {
             
-            kmRecorrido.text = "0.0 Km"
+            loc = [CLLocationCoordinate2D]()
             
         }
         
     }
-    
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer{
+
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         
-        let pr = MKPolylineRenderer(overlay: overlay)
+        let pr = MKPolylineRenderer(overlay: overlay as! MKPolyline)
         pr.strokeColor = UIColor.red
         pr.lineWidth = 5
         return pr
