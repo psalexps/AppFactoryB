@@ -11,7 +11,7 @@
 
 ### Fotos
 
-![](https://photos.app.goo.gl/DHgDpW39ATGeLQVk7)
+![](app.png)
 
 ### Cosas por terminar
 
