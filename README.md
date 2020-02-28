@@ -11,7 +11,7 @@
 
 ### Fotos
 
-![](app.png)
+<img src="app.png" alt="Smiley face" height="300" width="100">
 
 ### Cosas por terminar
 
