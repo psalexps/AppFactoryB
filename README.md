@@ -3,6 +3,7 @@
 ### Características de la aplicación
 
 - Diseño de una aplicación que nos permite hacer diferentes actividades.
+- Muestra nuestra posición en el mapa.
 - Tipos de actividades (Andar, Correr, Bicicleta).
 - Nos permite ver la distancia recorrida.
 - Nos permite ver el tiempo realizando actividad.

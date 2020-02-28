@@ -69,6 +69,33 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         
     }
     
+    @IBAction func andarFun(_ sender: Any) {
+        
+        correrButton.isSelected = false
+        bicicletaButton.isSelected = false
+        
+        andarButton.isSelected = true
+        
+    }
+    
+    @IBAction func correrFun(_ sender: Any) {
+        
+        andarButton.isSelected = false
+        bicicletaButton.isSelected = false
+        
+        correrButton.isSelected = true
+        
+    }
+    
+    @IBAction func biciFun(_ sender: Any) {
+        
+        andarButton.isSelected = false
+        correrButton.isSelected = false
+        
+        bicicletaButton.isSelected = true
+        
+    }
+    
     func cronometro(){
         
         timer = Timer.scheduledTimer(timeInterval: 1,
@@ -186,6 +213,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             let polyline = MKPolyline(coordinates: loc, count: loc.count)
             
             mapView.addOverlay(polyline)
+            
+            let region = MKCoordinateRegion(center: loca, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+            self.mapView.setRegion(region, animated: true)
         
             if startLocation == nil {
                 print("startLocation is null")

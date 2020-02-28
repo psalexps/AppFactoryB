@@ -138,18 +138,27 @@
                                 <rect key="frame" x="20" y="7" width="92" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Andar"/>
+                                <connections>
+                                    <action selector="andarFun:" destination="h7j-5W-Uix" eventType="touchUpInside" id="CzW-JB-UE4"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="avm-Qm-7TL">
                             <rect key="frame" x="184" y="7" width="46" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="Correr"/>
+                            <connections>
+                                <action selector="correrFun:" destination="h7j-5W-Uix" eventType="touchUpInside" id="dAy-k1-iag"/>
+                            </connections>
                         </button>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="xne-ec-lIc">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="OQs-UV-IHB">
                                 <rect key="frame" x="302" y="7" width="92" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Bicicleta"/>
+                                <connections>
+                                    <action selector="biciFun:" destination="h7j-5W-Uix" eventType="touchUpInside" id="eFC-Xn-NJp"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
