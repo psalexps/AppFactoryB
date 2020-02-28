@@ -11,7 +11,7 @@
 
 ### Fotos
 
-<img src="app.png" alt="Smiley face" height="300" width="100">
+<img src="app.png" alt="Smiley face" height="300" width="200">
 
 ### Cosas por terminar
 
