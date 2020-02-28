@@ -186,6 +186,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         min = 0
         hor = 0
         timeLabel.text = "00:00:00"
+        kmRecorrido.text = "0.0 Km"
         timer?.invalidate()
         finishButton.isEnabled = false
         startButton.isEnabled = true
@@ -196,13 +197,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     var loc = [CLLocationCoordinate2D]()
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        print(locations[0].coordinate)
-        
-        /*
-        let region = MKCoordinateRegion(center: loca, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-        self.mapView.setRegion(region, animated: true)
-         */
         
         if (startButton.isEnabled == false && pause == 0) {
             
@@ -218,7 +212,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             self.mapView.setRegion(region, animated: true)
         
             if startLocation == nil {
-                print("startLocation is null")
+
                 startLocation = locations.first
             }
             else {
