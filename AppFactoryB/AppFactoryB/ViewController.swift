@@ -187,6 +187,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         hor = 0
         timeLabel.text = "00:00:00"
         kmRecorrido.text = "0.0 Km"
+        distanceTraveled = 0
         timer?.invalidate()
         finishButton.isEnabled = false
         startButton.isEnabled = true
